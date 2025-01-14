@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  runner:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - RUNNER_NAME=${RUNNER_NAME}
+      - GITHUB_PAT=${GITHUB_PAT}
+      - GITHUB_OWNER=${GITHUB_OWNER}
+      - GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
+      - RUNNER_LABELS=${RUNNER_LABELS}
+      - RUNNER_WORKDIR=${RUNNER_WORKDIR}
+      - RUNNER_GROUP=${RUNNER_GROUP}
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner-data:/home/runner
+    security_opt:
+      - no-new-privileges:true
+    # Add resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 1G
+
+volumes:
+  runner-data:

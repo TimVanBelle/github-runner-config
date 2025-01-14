@@ -1,0 +1,27 @@
+# Create this file in: .github/workflows/test-runner.yml
+name: Test Self-Hosted Runner
+
+on:
+  workflow_dispatch  # Allows manual trigger
+
+jobs:
+  test:
+    runs-on: self-hosted  # Specifies to use your self-hosted runner
+
+    steps:
+      - name: Check Runner Environment
+        run: |
+          echo "🔍 Runner Diagnostics"
+          echo "====================="
+          echo "OS Information:"
+          uname -a
+          echo "====================="
+          echo "Docker Status:"
+          docker --version
+          echo "====================="
+          echo "Working Directory:"
+          pwd
+          ls -la
+          echo "====================="
+          echo "Environment Variables:"
+          env | grep -i github || true
