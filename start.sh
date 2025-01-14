@@ -2,10 +2,11 @@
 
 cd /home/runner/actions-runner
 
-# Configure the runner
-./config.sh --url https://github.com/${GITHUB_OWNER}/${GITHUB_REPOSITORY} \
-    --token ${GITHUB_PAT} \
+# Configure the runner with new variable names
+./config.sh --url https://github.com/${REPO_OWNER}/${REPO_NAME} \
+    --token ${ACCESS_TOKEN} \
     --name ${RUNNER_NAME} \
+    --labels ${RUNNER_LABELS} \
     --unattended \
     --replace
 

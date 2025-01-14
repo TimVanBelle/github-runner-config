@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   runner:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     environment:
       - RUNNER_NAME=${RUNNER_NAME}
-      - GITHUB_PAT=${GITHUB_PAT}
-      - GITHUB_OWNER=${GITHUB_OWNER}
-      - GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
+      - ACCESS_TOKEN=${secrets.ACCESS_TOKEN}
+      - REPO_OWNER=${REPO_OWNER}
+      - REPO_NAME=${REPO_NAME}
       - RUNNER_LABELS=${RUNNER_LABELS}
       - RUNNER_WORKDIR=${RUNNER_WORKDIR}
       - RUNNER_GROUP=${RUNNER_GROUP}

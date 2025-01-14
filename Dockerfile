@@ -1,10 +1,13 @@
 FROM ubuntu:22.04
 
 # Set environment variables
-ENV RUNNER_NAME="self-hosted-runner"
-ENV GITHUB_PAT=""
-ENV GITHUB_OWNER=""
-ENV GITHUB_REPOSITORY=""
+ENV RUNNER_NAME="hostinger-self-hosted-runner-1"
+ENV ACCESS_TOKEN=""
+ENV REPO_OWNER=""
+ENV REPO_NAME=""
+ENV RUNNER_LABELS="self-hosted,linux,docker"
+ENV RUNNER_WORKDIR="/home/runner/work"
+ENV RUNNER_GROUP="default"
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
@@ -34,6 +37,8 @@ RUN mkdir actions-runner && cd actions-runner && \
 # Copy the startup script
 COPY --chown=runner:runner start.sh /home/runner/start.sh
 RUN chmod +x /home/runner/start.sh
+
+RUN mkdir -p ${RUNNER_WORKDIR}
 
 # Start the runner
 ENTRYPOINT ["/home/runner/start.sh"]
