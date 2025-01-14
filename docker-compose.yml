@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - RUNNER_NAME=${RUNNER_NAME}
-      - ACCESS_TOKEN=${secrets.ACCESS_TOKEN}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
       - REPO_OWNER=${REPO_OWNER}
       - REPO_NAME=${REPO_NAME}
       - RUNNER_LABELS=${RUNNER_LABELS}
